@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		070CE15E1B52EB9100CEB894 /* Palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 070CE15D1B52EB9100CEB894 /* Palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		070CE1641B52EB9100CEB894 /* Palette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070CE1581B52EB9100CEB894 /* Palette.framework */; };
+		070CE1641B52EB9100CEB894 /* PaletteSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 070CE1581B52EB9100CEB894 /* PaletteSwift.framework */; };
 		070CE16B1B52EB9100CEB894 /* PaletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070CE16A1B52EB9100CEB894 /* PaletteTests.swift */; };
+		070CE1E11B52EE7E00CEB894 /* PaletteObject.swift in Headers */ = {isa = PBXBuildFile; fileRef = 070CE1AD1B52EC5500CEB894 /* PaletteObject.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		070CE1E21B52EE8400CEB894 /* UIImage+AverageColor.swift in Headers */ = {isa = PBXBuildFile; fileRef = 070CE1AF1B52EC6D00CEB894 /* UIImage+AverageColor.swift */; settings = {ATTRIBUTES = (Private, ); }; };
+		070CE1E71B52EF9C00CEB894 /* PaletteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070CE1AD1B52EC5500CEB894 /* PaletteObject.swift */; };
+		070CE1E81B52EF9C00CEB894 /* UIImage+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070CE1AF1B52EC6D00CEB894 /* UIImage+AverageColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +27,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		070CE1581B52EB9100CEB894 /* Palette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Palette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		070CE1581B52EB9100CEB894 /* PaletteSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaletteSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		070CE15C1B52EB9100CEB894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070CE15D1B52EB9100CEB894 /* Palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		070CE1631B52EB9100CEB894 /* PaletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaletteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		070CE1691B52EB9100CEB894 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070CE16A1B52EB9100CEB894 /* PaletteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteTests.swift; sourceTree = "<group>"; };
+		070CE1AD1B52EC5500CEB894 /* PaletteObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaletteObject.swift; sourceTree = "<group>"; };
+		070CE1AF1B52EC6D00CEB894 /* UIImage+AverageColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AverageColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				070CE1641B52EB9100CEB894 /* Palette.framework in Frameworks */,
+				070CE1641B52EB9100CEB894 /* PaletteSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +68,7 @@
 		070CE1591B52EB9100CEB894 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070CE1581B52EB9100CEB894 /* Palette.framework */,
+				070CE1581B52EB9100CEB894 /* PaletteSwift.framework */,
 				070CE1631B52EB9100CEB894 /* PaletteTests.xctest */,
 			);
 			name = Products;
@@ -71,6 +77,8 @@
 		070CE15A1B52EB9100CEB894 /* Palette */ = {
 			isa = PBXGroup;
 			children = (
+				070CE1AD1B52EC5500CEB894 /* PaletteObject.swift */,
+				070CE1AF1B52EC6D00CEB894 /* UIImage+AverageColor.swift */,
 				070CE15D1B52EB9100CEB894 /* Palette.h */,
 				070CE15B1B52EB9100CEB894 /* Supporting Files */,
 			);
@@ -110,6 +118,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				070CE15E1B52EB9100CEB894 /* Palette.h in Headers */,
+				070CE1E11B52EE7E00CEB894 /* PaletteObject.swift in Headers */,
+				070CE1E21B52EE8400CEB894 /* UIImage+AverageColor.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +141,7 @@
 			);
 			name = Palette;
 			productName = Palette;
-			productReference = 070CE1581B52EB9100CEB894 /* Palette.framework */;
+			productReference = 070CE1581B52EB9100CEB894 /* PaletteSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		070CE1621B52EB9100CEB894 /* PaletteTests */ = {
@@ -209,6 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070CE1E71B52EF9C00CEB894 /* PaletteObject.swift in Sources */,
+				070CE1E81B52EF9C00CEB894 /* UIImage+AverageColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +335,7 @@
 		070CE16F1B52EB9100CEB894 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -330,14 +343,17 @@
 				INFOPLIST_FILE = Palette/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PRODUCT_MODULE_NAME = PaletteSwift;
+				PRODUCT_NAME = PaletteSwift;
+				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		070CE1701B52EB9100CEB894 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -345,8 +361,9 @@
 				INFOPLIST_FILE = Palette/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PRODUCT_MODULE_NAME = PaletteSwift;
+				PRODUCT_NAME = PaletteSwift;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -399,6 +416,7 @@
 				070CE1701B52EB9100CEB894 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		070CE1711B52EB9100CEB894 /* Build configuration list for PBXNativeTarget "PaletteTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +425,7 @@
 				070CE1731B52EB9100CEB894 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
