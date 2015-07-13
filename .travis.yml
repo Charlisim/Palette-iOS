@@ -3,4 +3,4 @@ xode_project: Palette-iOS.xcodeproj
 xcode_scheme: Palette-iOS
 osx_image: xcode6.4
 
-script:xctool -project Palette-iOS.xcodeproj -scheme Palette -sdk iphonesimulator test
+script: xctool -project Palette-iOS.xcodeproj -scheme Palette -sdk iphonesimulator test
