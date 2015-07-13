@@ -1,6 +1,6 @@
 //
-//  Palette_iOSTests.swift
-//  Palette-iOSTests
+//  ExampleTests.swift
+//  ExampleTests
 //
 //  Created by Carlos Simon Villas on 12/07/15.
 //  Copyright (c) 2015 Charlisim. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class Palette_iOSTests: XCTestCase {
+class ExampleTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
