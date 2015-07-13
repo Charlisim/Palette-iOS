@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor.whiteColor()
         let palette = Palette(background:self.view, forView:self.label)
         label.textColor = palette.getContrastingColor()
+        label.textColor = Palette.getContrastingColor(self.view, forView: self.label)
         
     }
 
