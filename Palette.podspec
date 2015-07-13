@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Palette"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Like Android Palette for iOS. Written in Swift"
 
   s.description  = <<-DESC
@@ -78,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "0.0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
