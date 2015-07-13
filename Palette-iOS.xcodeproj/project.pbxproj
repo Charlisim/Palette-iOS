@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070CE2431B530A7200CEB894 /* UIView+ColorAtPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070CE2421B530A7200CEB894 /* UIView+ColorAtPoint.swift */; };
+		072FE95A1B545FA900F29F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072FE9591B545FA900F29F30 /* ViewController.swift */; };
 		07A534B41B52E4C200AF89E8 /* Palette-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A534B31B52E4C200AF89E8 /* Palette-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		07A534BA1B52E4C300AF89E8 /* Palette.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A534AF1B52E4C200AF89E8 /* Palette.framework */; };
 		07A534C31B52E4C300AF89E8 /* PaletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A534C21B52E4C300AF89E8 /* PaletteTests.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		070CE2421B530A7200CEB894 /* UIView+ColorAtPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ColorAtPoint.swift"; sourceTree = "<group>"; };
+		072FE9591B545FA900F29F30 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07A534AF1B52E4C200AF89E8 /* Palette.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Palette.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07A534B21B52E4C200AF89E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07A534B31B52E4C200AF89E8 /* Palette-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Palette-iOS.h"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		07A534BF1B52E4C300AF89E8 /* PaletteTests */ = {
 			isa = PBXGroup;
 			children = (
+				072FE9591B545FA900F29F30 /* ViewController.swift */,
 				07A534C21B52E4C300AF89E8 /* PaletteTests.swift */,
 				07A534C01B52E4C300AF89E8 /* Supporting Files */,
 			);
@@ -400,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072FE95A1B545FA900F29F30 /* ViewController.swift in Sources */,
 				07A534C31B52E4C300AF89E8 /* PaletteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

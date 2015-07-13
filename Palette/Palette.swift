@@ -89,4 +89,8 @@ public class Palette{
     public func getContrastingColor()->UIColor{
         return blackOrWhiteContrastingColor(getImageColor())
     }
+    
+    public static func getContrastingColor(background:UIView, forView:UIView)->UIColor{
+        return Palette(background: background, forView: forView).getContrastingColor()
+    }
 }
