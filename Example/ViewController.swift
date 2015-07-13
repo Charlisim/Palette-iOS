@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let point = CGPointMake(self.label.frame.origin.x, self.label.frame.origin.y)
-        self.view.backgroundColor = UIColor.grayColor()
+        self.view.backgroundColor = UIColor.whiteColor()
         let palette = Palette(background:self.view, forView:self.label)
         label.textColor = palette.getContrastingColor()
         

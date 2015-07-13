@@ -54,7 +54,6 @@ public class Palette{
     public init(background:UIView, forView:UIView){
         self.background = background
         self.view = forView
-        println(self.printColors(getImageColor()))
     }
     private func getImageColor()->UIColor{
         let point = CGPointMake(self.view.frame.origin.x, self.view.frame.origin.y)
@@ -77,7 +76,6 @@ public class Palette{
         let rgbaT = Color(color: color)
         let components = CGColorGetComponents(color.CGColor)
         let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
-        println("brillo \(brightness)")
         if (brightness < 0.5)
         {
             return UIColor.whiteColor()
