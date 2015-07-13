@@ -13,5 +13,9 @@ From any view (anything that inherits UIView) gets contrasting color (black or w
 
     let palette = Palette(background:self.view, view:self.label)
     self.label.textColor = palette.getContrastingColor()
+    
+or 
+    
+    self.label.textColor = Palette.getContrastingColor(self.view, forView: self.label)
 
 
