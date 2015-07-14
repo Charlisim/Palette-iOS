@@ -1,5 +1,5 @@
 # Palette-iOS [![Build Status](https://travis-ci.org/Charlisim/Palette-iOS.svg?branch=master)](https://travis-ci.org/Charlisim/Palette-iOS)
-Like Android Palette for iOS. Written in Swift 
+Like [Android Palette](https://developer.android.com/reference/android/support/v7/graphics/Palette.html) for iOS. Written in Swift 
 
 From any view (anything that inherits UIView) gets contrasting color (black or white) for specific point where is another view.
 
