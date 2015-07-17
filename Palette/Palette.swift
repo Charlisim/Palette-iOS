@@ -46,7 +46,8 @@ private struct Color{
         
     }
 }
-public class Palette{
+
+@objc public class Palette:NSObject{
     
     let background:UIView
     let view:UIView
@@ -68,6 +69,7 @@ public class Palette{
             println(components[1])
             println(components[2])
             println(components[3])
+            
         }
     }
 
@@ -93,4 +95,6 @@ public class Palette{
     public static func getContrastingColor(background:UIView, forView:UIView)->UIColor{
         return Palette(background: background, forView: forView).getContrastingColor()
     }
+    
+
 }
