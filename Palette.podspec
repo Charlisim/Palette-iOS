@@ -16,20 +16,16 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Palette"
-  s.version      = "0.0.2"
-  s.summary      = "Like Android Palette for iOS. Written in Swift"
+  s.version      = "1.0.0"
+  s.summary      = "Like Android Palette for iOS. Get contrasting color for any UIView"
 
   s.description  = <<-DESC
-                   A longer description of Palette in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
+                  Like Android Palette for iOS. Written in Swift and compatible with Objective-C¬
+                  From any view (anything that inherits UIView) gets contrasting color (black or white) for specific point where is another view.¬
+                  DESC
 
   s.homepage     = "http://github.com/Charlisim/Palette-iOS"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -56,7 +52,7 @@ Pod::Spec.new do |s|
   s.author             = { "Carlos Simon Villas" => "csimonts@gmail.com" }
   # Or just: s.author    = "Carlos Simon Villas"
   # s.authors            = { "Carlos Simon Villas" => "csimon@murdock.es" }
-  # s.social_media_url   = "http://twitter.com/Carlos Simon Villas"
+  s.social_media_url   = "http://twitter.com/charlisim"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -78,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "0.0.2" }
+  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
