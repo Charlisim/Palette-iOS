@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Palette"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Like Android Palette for iOS. Get contrasting color for any UIView"
 
   s.description  = <<-DESC
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/Charlisim/Palette-iOS.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
