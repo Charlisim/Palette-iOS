@@ -35,3 +35,5 @@ DerivedData
 
 Carthage/Build
 
+Example Objective-CTests/
+ExampleTests/
