@@ -51,12 +51,18 @@ private struct Color{
     
     let background:UIView
     let view:UIView
-    
+    /**
+        Initialize Palette object
+        
+        @param background: View that will be used to find background color
+        @param forView: View whose cordinates will be use to find complementary color
+
+    */
     public init(background:UIView, forView:UIView){
         self.background = background
         self.view = forView
     }
-    private func getImageColor()->UIColor{
+    private func getBackgroundColorAtViewPoint()->UIColor{
         let point = CGPointMake(self.view.frame.origin.x, self.view.frame.origin.y)
         return self.background.getPixelColorAtPoint(point)
         
@@ -88,10 +94,24 @@ private struct Color{
         }
     }
     
+    /**
+        Returns black or white color according background color on coordinates where is placed second view
+        Uses the following formula ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+        As recomended by W3 http://www.w3.org/TR/AERT#color-contrast
+        @return Contrasting color
+    */
     public func getContrastingColor()->UIColor{
-        return blackOrWhiteContrastingColor(getImageColor())
+        return blackOrWhiteContrastingColor(getBackgroundColorAtViewPoint())
     }
+    /**
+        Returns black or white color according background color on coordinates where is placed second view
+        Uses the following formula ((Red value X 299) + (Green value X 587) + (Blue value X 114)) / 1000
+        As recomended by W3 http://www.w3.org/TR/AERT#color-contrast
     
+        @param background: View that will be used to find background color
+        @param forView: View whose cordinates will be use to find complementary color
+        @return Contrasting color
+    */
     public static func getContrastingColor(background:UIView, forView:UIView)->UIColor{
         return Palette(background: background, forView: forView).getContrastingColor()
     }
