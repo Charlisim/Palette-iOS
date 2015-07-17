@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
                   DESC
 
   s.homepage     = "http://github.com/Charlisim/Palette-iOS"
-  s.screenshots  = "https://github.com/Charlisim/Palette-iOS/blob/master/screenshots/gray.png?raw=true", https://github.com/Charlisim/Palette-iOS/blob/master/screenshots/red.png?raw=true"
+  s.screenshots  = "https://github.com/Charlisim/Palette-iOS/blob/master/screenshots/gray.png?raw=true", "https://github.com/Charlisim/Palette-iOS/blob/master/screenshots/red.png?raw=true"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
