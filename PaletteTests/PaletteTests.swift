@@ -31,31 +31,31 @@ class PaletteTests: XCTestCase {
         XCTAssertTrue(self.palette?.getContrastingColor() != nil, "")
     }
     func testWhiteBackground(){
-        self.vc.view.backgroundColor = UIColor.whiteColor()
-        println(self.palette?.getContrastingColor())
-        let color1 = self.palette!.getContrastingColor().CGColor
-        let color2 = UIColor.blackColor().CGColor
-        XCTAssertEqual(CGColorEqualToColor(color1,color2), true)
+        self.vc.view.backgroundColor = UIColor.white
+        print(self.palette?.getContrastingColor())
+        let color1 = self.palette!.getContrastingColor().cgColor
+        let color2 = UIColor.black.cgColor
+        XCTAssertEqual(color1, color2)
     }
     func testBlackBackground(){
-        self.vc.view.backgroundColor = UIColor.blackColor()
-        println(self.palette?.getContrastingColor())
-        let color1 = self.palette!.getContrastingColor().CGColor
-        let color2 = UIColor.whiteColor().CGColor
-        XCTAssertEqual(CGColorEqualToColor(color1,color2), true)
+        self.vc.view.backgroundColor = UIColor.black
+        print(self.palette?.getContrastingColor())
+        let color1 = self.palette!.getContrastingColor().cgColor
+        let color2 = UIColor.white.cgColor
+        XCTAssertEqual(color1, color2)
     }
     func testRedBackground(){
-        self.vc.view.backgroundColor = UIColor.redColor()
-        println(self.palette?.getContrastingColor())
-        let color1 = self.palette!.getContrastingColor().CGColor
-        let color2 = UIColor.whiteColor().CGColor
-        XCTAssertEqual(CGColorEqualToColor(color1,color2), true)
+        self.vc.view.backgroundColor = UIColor.red
+        print(self.palette?.getContrastingColor())
+        let color1 = self.palette!.getContrastingColor().cgColor
+        let color2 = UIColor.white.cgColor
+        XCTAssertEqual(color1, color2)
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.vc.view.backgroundColor = UIColor.redColor()
+        self.vc.view.backgroundColor = UIColor.red
 
-        self.measureBlock() {
+        self.measure {
             self.palette!.getContrastingColor()
             // Put the code you want to measure the time of here.
         }

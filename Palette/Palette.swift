@@ -23,19 +23,19 @@
 import UIKit
 
 private struct Color{
-    let r:CGFloat;
-    let g:CGFloat;
-    let b:CGFloat;
-    let a:CGFloat;
+    let r:CGFloat?;
+    let g:CGFloat?;
+    let b:CGFloat?;
+    let a:CGFloat?;
     
     init(color:UIColor){
-        let numComponents = CGColorGetNumberOfComponents(color.CGColor);
+        let numComponents = color.cgColor.numberOfComponents;
         if numComponents == 4{
-            let components = CGColorGetComponents(color.CGColor)
-            r = components[0]
-            g = components[1]
-            b = components[2]
-            a = components[3]
+            let components = color.cgColor.components
+            r = components?[0]
+            g = components?[1]
+            b = components?[2]
+            a = components?[3]
         }else{
             r = 0
             g = 0
@@ -63,34 +63,36 @@ private struct Color{
         self.view = forView
     }
     private func getBackgroundColorAtViewPoint()->UIColor{
-        let point = CGPointMake(self.view.frame.origin.x, self.view.frame.origin.y)
-        return self.background.getPixelColorAtPoint(point)
+        let point = CGPoint(x: self.view.frame.origin.x, y: self.view.frame.origin.y)
+        return self.background.getPixelColorAtPoint(point: point)
         
     }
     private func printColors(color:UIColor){
-        let numComponents = CGColorGetNumberOfComponents(color.CGColor);
+        let numComponents = color.cgColor.numberOfComponents;
         if numComponents == 4{
-            let components = CGColorGetComponents(color.CGColor)
-            println(components[0])
-            println(components[1])
-            println(components[2])
-            println(components[3])
+            let components = color.cgColor.components
+            print(components?[0] ?? 0)
+            print(components?[1] ?? 0)
+            print(components?[2] ?? 0)
+            print(components?[3] ?? 0)
             
         }
     }
 
     
     private func blackOrWhiteContrastingColor(color:UIColor) -> UIColor {
-        let rgbaT = Color(color: color)
-        let components = CGColorGetComponents(color.CGColor)
-        let brightness = ((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000
+        let components = color.cgColor.components
+        let rBright = (components?[0] ?? 0) * 299
+        let gBright = (components?[1] ?? 0) * 587
+        let bBright = (components?[2] ?? 0) * 114
+        let brightness = (rBright + gBright + bBright)  / 1000
         if (brightness < 0.5)
         {
-            return UIColor.whiteColor()
+            return UIColor.white
         }
         else
         {
-            return UIColor.blackColor()
+            return UIColor.black
         }
     }
     
@@ -101,7 +103,7 @@ private struct Color{
         @return Contrasting color
     */
     public func getContrastingColor()->UIColor{
-        return blackOrWhiteContrastingColor(getBackgroundColorAtViewPoint())
+        return blackOrWhiteContrastingColor(color: getBackgroundColorAtViewPoint())
     }
     /**
         Returns black or white color according background color on coordinates where is placed second view

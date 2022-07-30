@@ -29,11 +29,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let point = CGPointMake(self.label.frame.origin.x, self.label.frame.origin.y)
-        self.view.backgroundColor = UIColor.whiteColor()
+        let point = CGPoint(x: self.label.frame.origin.x, y: self.label.frame.origin.y)
+        self.view.backgroundColor = UIColor.white
         let palette = Palette(background:self.view, forView:self.label)
         label.textColor = palette.getContrastingColor()
-        label.textColor = Palette.getContrastingColor(self.view, forView: self.label)
+        label.textColor = Palette.getContrastingColor(background: self.view, forView: self.label)
         
     }
 
