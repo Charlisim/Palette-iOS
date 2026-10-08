@@ -1,34 +1,52 @@
-//
-//  ViewController.m
-//  Example Objective-C
-//
-//  Created by Carlos Simon Villas on 17/07/15.
-//  Copyright (c) 2015 Charlisim. All rights reserved.
-//
-
 #import "ViewController.h"
 @import Palette;
-@interface ViewController ()
 
+@interface ViewController ()
+@property (strong, nonatomic) UILabel *contrastLabel;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
-    label.text = @"Test text";
-    Palette * palette = [[Palette alloc] initWithBackground:self.view forView:label];
-    label.textColor =  [palette getContrastingColor];
-    label.textColor = [Palette getContrastingColor:self.view forView:label];
-    [self.view addSubview:label];
+    if (@available(iOS 17.0, *)) {
+        [self registerForTraitChanges:@[[UITraitUserInterfaceStyle class]]
+                          withAction:@selector(appearanceDidChange)];
+    }
+    self.view.backgroundColor = [UIColor systemBackgroundColor];
+    self.contrastLabel = [[UILabel alloc] init];
+    self.contrastLabel.text = @"Palette Objective-C example";
+    self.contrastLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleTitle2];
+    self.contrastLabel.adjustsFontForContentSizeCategory = YES;
+    self.contrastLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.contrastLabel];
+    [NSLayoutConstraint activateConstraints:@[
+        [self.contrastLabel.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [self.contrastLabel.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor]
+    ]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)appearanceDidChange {
+    [self.view setNeedsLayout];
+}
 
-    // Dispose of any resources that can be recreated.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    if (@available(iOS 17.0, *)) {
+        return;
+    }
+    [self.view setNeedsLayout];
+}
+#pragma clang diagnostic pop
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    Palette *palette = [[Palette alloc] initWithBackground:self.view forView:self.contrastLabel];
+    self.contrastLabel.textColor = [palette getContrastingColor];
+    NSAssert([self.contrastLabel.textColor isEqual:[Palette getContrastingColor:self.view forView:self.contrastLabel]],
+             @"Instance and class Objective-C APIs must agree");
 }
 
 @end

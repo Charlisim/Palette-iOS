@@ -37,3 +37,10 @@ Carthage/Build
 
 Example Objective-CTests/
 ExampleTests/
+
+# Swift Package Manager and test results
+.build/
+.swiftpm/
+*.xcresult
+.DS_Store
+test-results/

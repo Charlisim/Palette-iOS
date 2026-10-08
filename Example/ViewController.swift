@@ -20,30 +20,43 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-import UIKit
 import Palette
+import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
+@MainActor
+final class ViewController: UIViewController {
+  @IBOutlet private weak var imageView: UIImageView!
+  @IBOutlet private weak var label: UILabel!
 
-    @IBOutlet weak var label: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let point = CGPoint(x: self.label.frame.origin.x, y: self.label.frame.origin.y)
-        self.view.backgroundColor = UIColor.white
-        let palette = Palette(background:self.view, forView:self.label)
-        label.textColor = palette.getContrastingColor()
-        label.textColor = Palette.getContrastingColor(background: self.view, forView: self.label)
-        
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .systemBackground
+    label.text = "Palette contrast example"
+    label.font = .preferredFont(forTextStyle: .title2)
+    label.adjustsFontForContentSizeCategory = true
+    if #available(iOS 17.0, *) {
+      registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
+        (controller: ViewController, _: UITraitCollection) in
+        controller.view.setNeedsLayout()
+      }
     }
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  @available(iOS, introduced: 15.0, deprecated: 17.0)
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+    if #unavailable(iOS 17.0) {
+      view.setNeedsLayout()
     }
-    
-    
+  }
 
-
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    do {
+      label.textColor = try Palette(background: view, forView: label).contrastingColor()
+    } catch {
+      label.textColor = .label
+      assertionFailure("Unable to sample the example background: \(error)")
+    }
+  }
 }
-
