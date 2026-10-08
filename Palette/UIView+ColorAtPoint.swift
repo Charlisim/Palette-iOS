@@ -22,21 +22,46 @@
 
 import UIKit
 
-
-public extension UIView{
-    //returns the color data of the pixel at the currently selected point
-    func getPixelColorAtPoint(point:CGPoint)->UIColor
-    {
-        let pixel = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: 4)
-        var colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        let context = CGContext(data: pixel, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: colorSpace, bitmapInfo: bitmapInfo.rawValue)
-        
-        context!.translateBy(x: -point.x, y: -point.y)
-        layer.render(in: context!)
-        var color:UIColor = UIColor(red: CGFloat(pixel[0])/255.0, green: CGFloat(pixel[1])/255.0, blue: CGFloat(pixel[2])/255.0, alpha: CGFloat(pixel[3])/255.0)
-        
-        pixel.deallocate()
-        return color
+@MainActor
+extension UIView {
+  /// Samples a one-point footprint centered at `point`, in local bounds coordinates.
+  /// Returns an unpremultiplied sRGB color, including its alpha.
+  /// Layer rendering cannot capture GPU-only content such as Metal or video surfaces.
+  public func color(at point: CGPoint) throws -> UIColor {
+    layoutIfNeeded()
+    guard point.x.isFinite, point.y.isFinite, bounds.contains(point) else {
+      throw PaletteError.invalidPoint
     }
+    var pixel = [UInt8](repeating: 0, count: 4)
+    try pixel.withUnsafeMutableBytes { bytes in
+      guard let space = CGColorSpace(name: CGColorSpace.sRGB),
+        let context = CGContext(
+          data: bytes.baseAddress, width: 1, height: 1,
+          bitsPerComponent: 8, bytesPerRow: 4, space: space,
+          bitmapInfo: CGBitmapInfo.byteOrder32Big.rawValue
+            | CGImageAlphaInfo.premultipliedLast.rawValue
+        )
+      else {
+        throw PaletteError.renderingFailed
+      }
+      context.translateBy(
+        x: 0.5 - point.x,
+        y: 0.5 - point.y)
+      traitCollection.performAsCurrent {
+        layer.render(in: context)
+      }
+    }
+    let alpha = CGFloat(pixel[3]) / 255
+    guard alpha > 0 else { return .clear }
+    return UIColor(
+      red: min(CGFloat(pixel[0]) / 255 / alpha, 1),
+      green: min(CGFloat(pixel[1]) / 255 / alpha, 1),
+      blue: min(CGFloat(pixel[2]) / 255 / alpha, 1),
+      alpha: alpha)
+  }
+
+  /// Source-compatible entry point. Invalid points or rendering failures return clear.
+  public func getPixelColorAtPoint(point: CGPoint) -> UIColor {
+    (try? color(at: point)) ?? .clear
+  }
 }
