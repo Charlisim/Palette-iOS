@@ -25,15 +25,80 @@ import UIKit
 
 @MainActor
 final class ViewController: UIViewController {
-  @IBOutlet private weak var imageView: UIImageView!
-  @IBOutlet private weak var label: UILabel!
+  private var samples: [(background: UIView, label: UILabel, name: String)] = []
 
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
-    label.text = "Palette contrast example"
-    label.font = .preferredFont(forTextStyle: .title2)
-    label.adjustsFontForContentSizeCategory = true
+    let scrollView = UIScrollView()
+    scrollView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(scrollView)
+    let content = UIStackView()
+    content.axis = .vertical
+    content.spacing = 8
+    content.translatesAutoresizingMaskIntoConstraints = false
+    scrollView.addSubview(content)
+    NSLayoutConstraint.activate([
+      scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      content.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 20),
+      content.bottomAnchor.constraint(
+        equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -20),
+      content.leadingAnchor.constraint(
+        equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 20),
+      content.trailingAnchor.constraint(
+        equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -20),
+      content.widthAnchor.constraint(
+        equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -40),
+    ])
+    let title = UILabel()
+    title.text = "Palette"
+    title.font = .preferredFont(forTextStyle: .largeTitle)
+    title.adjustsFontForContentSizeCategory = true
+    content.addArrangedSubview(title)
+    let subtitle = UILabel()
+    subtitle.text = "Swift · Foreground chosen from each background"
+    subtitle.font = .preferredFont(forTextStyle: .subheadline)
+    subtitle.textColor = .secondaryLabel
+    subtitle.numberOfLines = 0
+    subtitle.adjustsFontForContentSizeCategory = true
+    content.addArrangedSubview(subtitle)
+    content.setCustomSpacing(20, after: subtitle)
+
+    let colors: [(String, UIColor)] = [
+      ("System background", .systemBackground),
+      ("Red · #FF0000", .red),
+      ("Orange · #FF8000", UIColor(red: 1, green: 0.5, blue: 0, alpha: 1)),
+      ("Yellow · #FFFF00", .yellow),
+      ("Green · #00FF00", .green),
+      ("Cyan · #00FFFF", .cyan),
+      ("Blue · #0000FF", .blue),
+      ("Purple · #800080", UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 1)),
+    ]
+    for (name, color) in colors {
+      let background = UIView()
+      background.backgroundColor = color
+      background.layer.cornerRadius = 12
+      background.layer.borderWidth = 1
+      let label = UILabel()
+      label.font = .preferredFont(forTextStyle: .body)
+      label.adjustsFontForContentSizeCategory = true
+      label.numberOfLines = 0
+      label.text = name
+      label.translatesAutoresizingMaskIntoConstraints = false
+      background.addSubview(label)
+      NSLayoutConstraint.activate([
+        background.heightAnchor.constraint(greaterThanOrEqualToConstant: 64),
+        label.topAnchor.constraint(equalTo: background.topAnchor, constant: 12),
+        label.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -12),
+        label.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 16),
+        label.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -16),
+      ])
+      content.addArrangedSubview(background)
+      samples.append((background, label, name))
+    }
     if #available(iOS 17.0, *) {
       registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
         (controller: ViewController, _: UITraitCollection) in
@@ -52,11 +117,21 @@ final class ViewController: UIViewController {
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    do {
-      label.textColor = try Palette(background: view, forView: label).contrastingColor()
-    } catch {
-      label.textColor = .label
-      assertionFailure("Unable to sample the example background: \(error)")
+    for sample in samples {
+      sample.background.layer.borderColor =
+        UIColor.separator.resolvedColor(with: traitCollection).cgColor
+      do {
+        let foreground = try Palette(background: sample.background, forView: sample.label)
+          .contrastingColor()
+        sample.label.textColor = foreground
+        let text = "\(sample.name)\n\(foreground == .black ? "Black" : "White") foreground"
+        if sample.label.text != text {
+          sample.label.text = text
+        }
+      } catch {
+        sample.label.textColor = .label
+        assertionFailure("Unable to sample the example background: \(error)")
+      }
     }
   }
 }

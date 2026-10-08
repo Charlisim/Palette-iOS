@@ -43,6 +43,32 @@ struct PaletteTests {
     #expect(try Palette.contrastingColor(for: colors[index]) == expected[index])
   }
 
+  @Test(arguments: [0, 1, 2, 3, 4, 5, 6])
+  func coloredBackgroundsAssignTheExpectedForeground(_ index: Int) throws {
+    let colors: [UIColor] = [
+      .red, UIColor(red: 1, green: 0.5, blue: 0, alpha: 1), .yellow,
+      .green, .cyan, .blue, UIColor(red: 0.5, green: 0, blue: 0.5, alpha: 1),
+    ]
+    let expected: [UIColor] = [.black, .black, .black, .black, .black, .white, .white]
+    let background = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 64))
+    background.backgroundColor = colors[index]
+    let label = UILabel(frame: CGRect(x: 16, y: 12, width: 160, height: 40))
+    label.text = "Palette"
+    background.addSubview(label)
+    let palette = Palette(background: background, forView: label)
+    label.textColor = try palette.contrastingColor()
+    #expect(label.textColor == expected[index])
+    #expect(background.backgroundColor == colors[index])
+    expectColor(try background.color(at: CGPoint(x: 190, y: 32)), matches: colors[index])
+
+    background.backgroundColor = .black
+    label.textColor = try palette.contrastingColor()
+    #expect(label.textColor == .white)
+    background.backgroundColor = .white
+    label.textColor = try palette.contrastingColor()
+    #expect(label.textColor == .black)
+  }
+
   @Test func grayscaleDoesNotAssumeFourSourceComponents() throws {
     #expect(try Palette.contrastingColor(for: UIColor(white: 0.8, alpha: 1)) == .black)
     #expect(try Palette.contrastingColor(for: UIColor(white: 0.1, alpha: 1)) == .white)
