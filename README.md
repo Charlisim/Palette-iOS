@@ -2,6 +2,24 @@
 
 Palette chooses black or white foreground text for a UIKit background. It samples the background at a foreground view's top-left point and selects the greater WCAG contrast ratio. It is a contrast utility, not an image palette extractor.
 
+## Screenshots
+
+The Swift and Objective-C examples running on iPhone 18 Pro with iOS 27.0. Each pair shows light and dark appearance; the foreground switches between black and white as the background changes.
+
+### Swift
+
+<p>
+  <img src="screenshots/swift-light.png" alt="Swift example in light appearance with black text on a white background" width="240">
+  <img src="screenshots/swift-dark.png" alt="Swift example in dark appearance with white text on a black background" width="240">
+</p>
+
+### Objective-C
+
+<p>
+  <img src="screenshots/objc-light.png" alt="Objective-C example in light appearance with black text on a white background" width="240">
+  <img src="screenshots/objc-dark.png" alt="Objective-C example in dark appearance with white text on a black background" width="240">
+</p>
+
 ## Requirements
 
 - iOS 15 or later.
